@@ -22,6 +22,7 @@ The following keywords can be used to make the bot send the specific copypasta:
 - [hentai](https://www.reddit.com/r/copypasta/comments/ilx5fb/bitches_in_hentai_be_like/)
 - [twump](https://www.reddit.com/r/copypasta/comments/i9e6zf/trump_has_a_massive_cock/g1eiby1/?context=3)
 - [gaming](https://www.reddit.com/r/dogelore/comments/iuvny6/another_gamer_oppressed_by_society/g5o3ny0/?context=3)
+
 ## Requirements
 - Python 3 (I'm not sure exactly which version but I use 3.8.3)
 - discord.py
