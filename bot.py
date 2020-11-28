@@ -1,4 +1,3 @@
-# import os
 import random
 import json
 import asyncio
@@ -61,7 +60,7 @@ bot.remove_command('help')
 
 commandUsage = {
     'prefix': '<prefix>',
-    'copypasta': '[pasta-index]',
+    'copypasta': '[keyword]',
     'roll': '<number-of-dice> <number-of-sides>',
     'based': '<user>',
     'cringe': '<user>',
@@ -370,15 +369,13 @@ async def help(ctx, command=None):
             embed.add_field(name='Aliases', value=', '.join(aliases))
         if commandExamples.get(command.name, '') != '':
             embed.add_field(name='Examples', value=commandExamples[command.name].format(prefix))
-        if command.name == 'copypasta':
-            embed.add_field(name='Pasta-Indicies', value="[0](https://shorturl.at/sFJR7), [1](https://shorturl.at/lnoxL), [2](https://shorturl.at/npQZ7), [3](https://shorturl.at/pFJKV), [4](https://www.reddit.com/r/copypasta/comments/h8v92y/f/), [5](https://shorturl.at/kmvBW), [6](https://www.reddit.com/r/copypasta/comments/gak2kc/funniest_thing_ive_ever_seen_wrote_this_myself_in/), [7](https://www.reddit.com/r/MakeMeSuffer/comments/g9cjo8/absolute_suffering/fosrznt/?context=3), [8](https://www.reddit.com/r/copypasta/comments/fwkfyq/faq_i_just_shit_and_cum_at_your_comment/), [9](https://www.reddit.com/r/okbuddyretard/comments/fgu6o7/subscriptions_by_day/fk6x510/?context=3), [10](https://www.reddit.com/r/copypasta/comments/etlw8e/nobody_fucking_asked/), [11](https://www.reddit.com/r/copypasta/comments/g2aqnl/hey_vsauce_glados_here_nice_cock/), [12](https://www.reddit.com/r/copypasta/comments/e1bx2s/wet_dreams_of_homer_simpson_credit_to_ucummy_boner/), [13](https://www.reddit.com/r/copypasta/comments/c3zskd/credit_to_ufuckthestate1776_in_the_comments_of_an/)")
     embed.set_footer(text='Parameters in <> are required whereas ones in [] are optional.')
     await ctx.send(embed=embed)
 
 @bot.command(name='info', help=f'Information about the bot', aliases=['i', 'information'])
 async def info(ctx):
     reaction = get_reaction(ctx.message)
-    embed = discord.Embed(title='Info', colour=discord.Color.green(), description=f"This bot was made by <@!345767813664866304>\nIf you want to let me know about anything (like a suggestion or error), use the report command. Also if you want to give me money, I accept crypto. DM <@!345767813664866304> or use the report command.\n\nYou get {reaction} by people reacting to your message with the emoji")
+    embed = discord.Embed(title='Info', colour=discord.Color.green(), description=f"This bot was made by <@!345767813664866304>\nIf you want to let me know about anything (like a suggestion or error), use the report command. Also if you want to give me money, I accept crypto. DM <@!345767813664866304> or use the report command.\nYou can view the source code on [Github](https://github.com/FlyingTurtle69/hilarious-bot)\n\nYou get {reaction} by people reacting to your message with the emoji")
     await ctx.send(embed=embed)
 
 @bot.command(name='backup', help='Ignore this; only I can use it')
