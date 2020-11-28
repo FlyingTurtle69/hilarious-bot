@@ -17,7 +17,7 @@ class Voice(commands.Cog):
         else:
             voice = await channel.connect()
 
-        voice.play(discord.FFmpegPCMAudio(executable="C:/Program Files (x86)/FFmpeg for Audacity/ffmpeg.exe", source='assets/microwave.mp3'))
+        voice.play(discord.FFmpegPCMAudio(source="assets/microwave.mp3"))
         await ctx.send(f'Joined {channel}')
 
     @commands.command(name='SCOTLAND!!!', help="Joins the voice channel you're in and plays scotland forever")
@@ -31,7 +31,7 @@ class Voice(commands.Cog):
         else:
             voice = await channel.connect()
 
-        voice.play(discord.FFmpegPCMAudio(executable="C:/Program Files (x86)/FFmpeg for Audacity/ffmpeg.exe", source='assets/scotland.mp3'))
+        voice.play(discord.FFmpegPCMAudio(source='assets/scotland.mp3'))
         await ctx.send(f'Joined {channel}')
 
     @commands.command(name='leave', help="Leaves the voice channel the bot is currently in")

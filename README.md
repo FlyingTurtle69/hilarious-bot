@@ -27,11 +27,10 @@ The following keywords can be used to make the bot send the specific copypasta:
 - Python 3 (I'm not sure exactly which version but I use 3.8.3)
 - discord.py
 - discord.py[voice]
-- emoji
+- [emoji](https://pypi.org/project/emoji/)
 
 ## Setup
 1. Run `setup.py`
 
 ## To Do
 - Finish this readme
-- Make &poll cringen't
