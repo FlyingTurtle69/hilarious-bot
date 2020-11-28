@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import asyncio
 
 class Funne(commands.Cog):
     def __init__(self, bot, *args, **kwargs):
@@ -86,6 +87,83 @@ class Funne(commands.Cog):
     @commands.command(name='spoiler', help='Sends a spoiler')
     async def spoiler(self, ctx):
         await ctx.send(file=discord.File('assets/SPOILER_spoiler.png'))
+
+    coomFrames = [
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8👊===D 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8=👊==D 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8==👊=D 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️  👢 
+      ⚡️8===👊D 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8=👊==D💦 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8=👊==D 💦 
+    🎸   🌂 
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8=👊==D  
+    🎸   🌂        💦
+    👢     👢
+```''',
+        '''```
+ 🖕    👨 
+  🐛💤👔🐛 
+       ⛽️ 👢 
+      ⚡️8=👊==D  
+    🎸   🌂       
+    👢     👢         💦
+```'''
+    ]
+
+    @commands.command(name='coom', help='Funny animation', aliases=['cum', 'penis', 'peeno'])
+    async def coom(self, ctx):
+        coomFrames = Funne.coomFrames
+        coomFrameOrder = [2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 1, 4, 5, 6, 7]
+        msg = await ctx.send(coomFrames[1])
+        for frame in coomFrameOrder:
+            await asyncio.sleep(0.3)
+            await msg.edit(content=coomFrames[frame])
+        
 
 def setup(bot):
     bot.add_cog(Funne(bot))
