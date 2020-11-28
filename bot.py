@@ -25,7 +25,12 @@ def read_server(column, serverID):
 def write_server(column, newValue, serverID):
     with closing(sqlite3.connect("data.db")) as connection:
         with closing(connection.cursor()) as cursor:
-            cursor.execute(f"INSERT OR REPLACE INTO servers (serverID, {column}) VALUES (?, ?)", (serverID, newValue))
+            columns = ['prefix', 'reaction']
+            if column == 'prefix':
+                otherColumn = 'reaction'
+            else:
+                otherColumn =  'prefix'
+            cursor.execute(f"INSERT OR REPLACE INTO servers (serverID, {column}, {otherColumn}) VALUES (?, ?, (SELECT {otherColumn} FROM servers WHERE serverID = ?))", (serverID, newValue, serverID))
         connection.commit()
 
 
@@ -65,7 +70,7 @@ commandUsage = {
     'based': '<user>',
     'cringe': '<user>',
     'profile': '[user]',
-    'leaderboard': '<type>',
+    'leaderboard': '<type> [amount]',
     'gamble': '<amount> <side>',
     'poll': '"<question>" [duration]',
     'report': '<message>',
@@ -218,7 +223,10 @@ async def profile(ctx, user=None):
     await ctx.send(embed=embed)
 
 @bot.command(name='leaderboard', help='Shows the people with the highest scores of the specified type', aliases=['l', 'top'])
-async def leaderboard(ctx, scoreType):
+async def leaderboard(ctx, scoreType, amount=3):
+    if amount > 22 or amount < 1:
+        await ctx.send("Please use an amount between 1 and 22 (inclusive)")
+        return
     based = ['based','b']
     cringe = ['cringe','c']
     reaction = ['pog', get_reaction(ctx.message)]
@@ -231,7 +239,7 @@ async def leaderboard(ctx, scoreType):
             scoreType = 'pog'
         with closing(sqlite3.connect("data.db")) as connection:
             with closing(connection.cursor()) as cursor:
-                scores = cursor.execute(f"SELECT userID, {scoreType} FROM scores ORDER BY {scoreType} DESC").fetchmany(3)
+                scores = cursor.execute(f"SELECT userID, {scoreType} FROM scores ORDER BY {scoreType} DESC").fetchmany(amount)
 
         j = 0
         description = ''
@@ -382,6 +390,15 @@ async def info(ctx):
 @commands.has_role("Personal FBI agent")
 async def backup(ctx):
     await ctx.send(file=discord.File('data.db'))
+
+@bot.command(name='sql', help='Ignore this; only I can use it')
+@commands.has_role("Personal FBI agent")
+async def sql(ctx, *, query):
+    with closing(sqlite3.connect("data.db")) as connection:
+        with closing(connection.cursor()) as cursor:
+            cursor.execute(query)
+            await ctx.send(f"`{query}` executed")
+        connection.commit()
 
 @bot.event
 async def on_command_error(ctx, error):

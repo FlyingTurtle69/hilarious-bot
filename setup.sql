@@ -13,5 +13,3 @@ CREATE TABLE servers (
     reaction TEXT,
     primary key(serverID)
 );
-
-INSERT INTO scores (userID) VALUES (0)

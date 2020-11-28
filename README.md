@@ -34,3 +34,4 @@ The following keywords can be used to make the bot send the specific copypasta:
 
 ## To Do
 - Finish this readme
+- Make &poll cringen't
