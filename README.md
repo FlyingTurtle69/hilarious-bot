@@ -1,6 +1,6 @@
 # Hilarious Bot
- Discord bot that does many different things. Created for my friend's server. Default prefix is `&`
- Invite the bot to your server [here](https://discord.com/api/oauth2/authorize?client_id=724141587369689088&permissions=3271744&scope=bot)
+ Discord bot that does many different things. Created for my friend's server. Default prefix is `&`.
+ Invite the bot to your server [here](https://discord.com/api/oauth2/authorize?client_id=724141587369689088&permissions=3533888&scope=bot)
 
 ## &copypasta
 The following keywords can be used to make the bot send the specific copypasta:
@@ -23,14 +23,50 @@ The following keywords can be used to make the bot send the specific copypasta:
 - [twump](https://www.reddit.com/r/copypasta/comments/i9e6zf/trump_has_a_massive_cock/g1eiby1/?context=3)
 - [gaming](https://www.reddit.com/r/dogelore/comments/iuvny6/another_gamer_oppressed_by_society/g5o3ny0/?context=3)
 
-## Requirements
+## Permissions Explained
+These are the required permissions and the reasoning behind them. If you aren't going to use all features of the bot, feel free to not grant permissions which are unnecessary.
+- **Read Messages** and **Send Messages**: So the bot can see and send anything
+- **Manage Messages**: The bot removes the counted emoji when someone reacts with it to their own message. For example, the server has 😎 as the counted emoji and someone messages hi and reacts to their own message with 😎. The bot then deletes that reaction. Also, this permission is needed so when a poll ends, it can remove the reactions
+- **Embed Links**: Many commands use embeds instead of normal text because it looks nicer, for example &profile
+- **Attach Files**: Needed to send pictures for commands like &michael
+- **Read Message History**: &emojify reactions and finalising the results for &poll
+- **Add Reactions**: The bot adds the check mark and cross emojis when someone makes a poll
+- **Use External Emojis**: &kai
+- **Connect** and **Speak**: Voice commands like &microwave
+
+## Self-Hosting
+If you want to host the bot on your own, you will need to follow this. 
+
+### Requirements
 - Python 3 (I'm not sure exactly which version but I use 3.8.3)
-- discord.py
-- discord.py[voice]
+- [discord.py[voice]](https://discordpy.readthedocs.io/en/latest/intro.html#installing)
 - [emoji](https://pypi.org/project/emoji/)
 
-## Setup
-1. Run `setup.py`
+### Setup
+1. Go to https://discord.com/developers/applications and login
+2. Click `New Application` in the top right hand corner, call it whatever you want then click `Create`
+3. Click `OAuth2` (on the left) and in `SCOPES` click `bot`
+4. Scroll down and in `BOT PERMISSIONS` select the following:
+    - View Channels
+    - Send Messages
+    - Manage Messages
+    - Embed Links
+    - Attach Files
+    - Read Message History
+    - Add Reactions
+    - Connect
+    - Speak
+5. Go to the link generated in `SCOPES`
+6. Add the bot to your server
+7. Go back to the other page and click `Bot` then `Add Bot` and `Yes, do it!`
+8. Under `TOKEN` click `Copy`
+9. Download the [ZIP](https://github.com/FlyingTurtle69/hilarious-bot/archive/main.zip) for this code and extract it
+10. Run `setup.py`
+11. Paste the token you copied before and click enter
+
+Now whenever you want to run the bot just run `bot.py` and keep the window open until you want to stop it
 
 ## To Do
-- Finish this readme
+- Make &help command not one massive list. Either:
+    - Make it paginate or
+    - Make it link to a wiki page

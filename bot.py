@@ -96,6 +96,9 @@ commandExamples = {
 async def is_guild_admin(ctx):
     return ctx.author.guild_permissions.administrator
 
+async def is_me(ctx):
+    return ctx.message.author.id == 345767813664866304
+
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord at {datetime.now().strftime("%I:%M%p %d %B")}\n')
@@ -350,6 +353,8 @@ async def reaction(ctx, emoji):
     write_server('reaction', emoji, ctx.guild.id)
     await ctx.send(f'The new reaction is {emoji}')
 
+helpIgnore = ['sql', 'backup', 'reverse', 'help', 'kai']
+
 @bot.command(name='help', help='Shows this')
 async def help(ctx, command=None):
     prefix = get_prefix(bot, ctx.message)[-1]
@@ -357,7 +362,8 @@ async def help(ctx, command=None):
     if command==None:
         embed = discord.Embed(color=discord.Color.blurple(), title='Help', description=f'To find out more about a command do: {prefix}help <command>')
         for command in bot.walk_commands():
-            embed.add_field(name=f"{prefix}{command.name} {commandUsage.get(command.name, '')}", value=command.help.format(reaction), inline=False)
+            if command.name not in helpIgnore:
+                embed.add_field(name=f"{prefix}{command.name} {commandUsage.get(command.name, '')}", value=command.help.format(reaction), inline=False)
     else:
         found = False
         for currentCommand in bot.walk_commands():
@@ -387,12 +393,12 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 @bot.command(name='backup', help='Ignore this; only I can use it')
-@commands.has_role("Personal FBI agent")
+@commands.check(is_me)
 async def backup(ctx):
     await ctx.send(file=discord.File('data.db'))
 
 @bot.command(name='sql', help='Ignore this; only I can use it')
-@commands.has_role("Personal FBI agent")
+@commands.check(is_me)
 async def sql(ctx, *, query):
     with closing(sqlite3.connect("data.db")) as connection:
         with closing(connection.cursor()) as cursor:
