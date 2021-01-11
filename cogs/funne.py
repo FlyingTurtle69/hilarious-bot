@@ -83,6 +83,10 @@ class Funne(commands.Cog):
     async def toby(self, ctx):
         phrase = random.choice(Funne.tobyPhrases)
         await ctx.send(phrase)
+    
+    @commands.command(name='borg', aliases=['caleb'], help='stfu')
+    async def borg(self, ctx, user):
+        await ctx.send(f'shut the fuck up {user}')
 
     @commands.command(name='spoiler', help='Sends a spoiler')
     async def spoiler(self, ctx):

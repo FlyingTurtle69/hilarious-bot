@@ -77,6 +77,7 @@ commandUsage = {
     'help': '<command>',
     'reaction': '<emoji>',
     'emojify': '"<phrase>" [message-ID]',
+    'borg': '<user>',
 }
 commandExamples = {
     'prefix': '```{0}prefix $``````{0}prefix so theres this guy and```',
@@ -90,7 +91,8 @@ commandExamples = {
     'poll': '```{0}poll "Is this bot epic?"``````{0}poll "Have I wasted a lot of time on this?" 120```',
     'report': "```{0}report It's broken lol```",
     'reaction':"```{0}reaction 😂``````{0}reaction 🤔```",
-    'emojify': '```{0}emojify "bruh moment"``````{0}e "hm🤔 baba" 781786505298968576```'
+    'emojify': '```{0}emojify "bruh moment"``````{0}e "hm🤔 baba" 781786505298968576```',
+    'borg': '```{0}borg @℉ℓℽℹℕℊ ╤¥ℝτ⅊ℇ```',
 }
 
 async def is_guild_admin(ctx):
