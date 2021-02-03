@@ -45,10 +45,17 @@ class Funne(commands.Cog):
             await ctx.send('That is not a valid keyword')
             await help(ctx, 'copypasta')
 
+    async def _sendRandomImage(self, context, imageFolder, imageNumber):
+        pic = random.choice(range(1, imageNumber + 1))
+        await context.channel.send(file=discord.File(f'assets/{imageFolder}/{pic}.jpg'))
+
     @commands.command(name='michael', aliases=['m'], help='Sends a random pic of michael')
     async def michael(self, ctx):
-        pic = random.choice(range(1, 38))
-        await ctx.channel.send(file=discord.File(f'assets/michael/{pic}.jpg'))
+        await self._sendRandomImage(ctx, 'michael', 37)
+
+    @commands.command(name='booba', help='Sends a random booba pic')
+    async def booba(self, ctx):
+        await self._sendRandomImage(ctx, 'booba', 7)
 
     @commands.command(name='finley', aliases=['f'], help='Sends a pic of finley')
     async def finley(self, ctx):
